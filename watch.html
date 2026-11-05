@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المجلس | تفسير سورة الأنعام — دورة الأترجة القرآنية</title>
+<meta name="description" content="استمع وشاهد مجلسًا من مجالس تفسير سورة الأنعام مع نص متزامن يُظلِّل الجملة الجارية، وآيات قابلة للطي بالرسم العثماني.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=3">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="فهرس المجالس">
+      <svg viewBox="0 0 64 64" role="img" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#173d2b"/><circle cx="32" cy="32" r="29" fill="none" stroke="#c59b27" stroke-width="2"/><g fill="none" stroke="#c59b27" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22c6-2.6 12-2.6 18 0v22c-6-2.6-12-2.6-18 0z"/><path d="M50 22c-6-2.6-12-2.6-18 0v22c6-2.6 12-2.6 18 0z"/><path d="M32 22v22"/></g><path d="M32 8l1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6z" fill="#c59b27"/></svg>
+      <span>
+        <span class="series">تفسير سورة الأنعام</span><br>
+        <span class="channel">دورة الأترجة القرآنية</span>
+      </span>
+    </a>
+    <nav aria-label="التنقل">
+      <a class="toplink" href="index.html">← فهرس المجالس</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="watch-grid">
+
+    <!-- عمود النص -->
+    <section class="text-col" aria-label="نص المجلس">
+      <div class="lecture-head">
+        <div class="series-label">دورة الأترجة القرآنية · المجالس التفسيرية</div>
+        <h1 id="lecTitle">…</h1>
+        <div class="meta-chips" id="lecMeta"></div>
+      </div>
+
+      <div class="controls-bar" role="toolbar" aria-label="أدوات العرض" style="margin-bottom:12px">
+        <label class="switch" title="يُمرِّر النص تلقائيًا مع الجملة الجارية — ويتوقف عند تدخّلك">
+          <input type="checkbox" id="autoScroll" checked>
+          تمرير تلقائي
+        </label>
+        <button class="small-btn" id="toggleVerses" aria-expanded="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          <span>توسيع كل الآيات</span>
+        </button>
+        <div class="lec-nav">
+          <button class="small-btn" id="prevLec" title="المجلس السابق">← السابق</button>
+          <button class="small-btn" id="nextLec" title="المجلس التالي">التالي →</button>
+        </div>
+      </div>
+
+      <div class="jump-row" style="margin-bottom:14px">
+        <label for="jumpSelect">انتقل إلى آية:</label>
+        <select id="jumpSelect"><option value="">— اختر آية —</option></select>
+      </div>
+
+      <div class="transcript" id="transcript" aria-live="polite"><!-- تُبنى من data/NNN.json --></div>
+
+      <div class="end-card" id="endCard" hidden>
+        <h3>انتهى هذا المجلس ﷻ</h3>
+        <p>نفع الله بك، وتابع مع المجلس التالي لإتمام تفسير سورة الأنعام.</p>
+        <a class="btn btn-gold" id="endNextBtn" href="watch.html?id=072">المجلس التالي ←</a>
+      </div>
+    </section>
+
+    <!-- عمود المشغل -->
+    <aside class="player-col" aria-label="المشغل">
+      <div class="player-card">
+        <div class="mode-tabs" role="tablist" aria-label="وضع العرض">
+          <button class="mode-tab" id="tabVideo" role="tab" aria-selected="true" aria-controls="videoPane">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            فيديو
+          </button>
+          <button class="mode-tab" id="tabAudio" role="tab" aria-selected="false" aria-controls="audioPane">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            صوت فقط
+          </button>
+        </div>
+
+        <div id="videoPane" role="tabpanel" aria-labelledby="tabVideo">
+          <div class="video-frame"><div id="ytplayer"></div></div>
+        </div>
+
+        <div id="audioPane" role="tabpanel" aria-labelledby="tabAudio" hidden>
+          <div class="audio-art">
+            <svg class="emblem" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#1b4332"/><circle cx="32" cy="32" r="29" fill="none" stroke="#c59b27" stroke-width="2"/><g fill="none" stroke="#c59b27" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22c6-2.6 12-2.6 18 0v22c-6-2.6-12-2.6-18 0z"/><path d="M50 22c-6-2.6-12-2.6-18 0v22c6-2.6 12-2.6 18 0z"/><path d="M32 22v22"/></g></svg>
+            <div class="lec-num" id="audioLecNum">المجلس ٠٧١</div>
+            <h2 id="audioTitle">…</h2>
+            <div class="speaker" id="audioSpeaker">…</div>
+            <audio id="audioEl" preload="metadata" controls></audio>
+          </div>
+        </div>
+
+        <div class="progress-wrap" aria-hidden="false">
+          <span class="time-label" id="timeCur">٠:٠٠</span>
+          <div class="progress" id="progressBar" role="slider" tabindex="0" aria-label="موضع التشغيل" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span class="time-label" id="timeDur">٠:٠٠</span>
+        </div>
+        <div class="player-meta">
+          <span id="metaDuration">المدة: —</span>
+          <span id="metaAyahs">الآيات: —</span>
+          <a id="ytLink" href="#" target="_blank" rel="noopener">فتح على يوتيوب ↗</a>
+        </div>
+      </div>
+
+      <p class="hint" style="font-family:var(--font-ui);font-size:.72rem;color:var(--muted);margin:0;padding:0 4px">💡 انقر أي جملة أو كلمة للانتقال إلى موضعها · مسافة = تشغيل/إيقاف · ← → = ±٥ ثوانٍ</p>
+    </aside>
+  </div>
+</main>
+
+<button class="follow-fab" id="followFab" aria-label="العودة إلى الجملة الجارية">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  متابعة الاستماع
+</button>
+
+<div class="resume-toast" id="resumeToast" hidden role="status"></div>
+
+<script src="assets/js/common.js"></script>
+<script src="https://www.youtube.com/iframe_api" async></script>
+<script src="assets/js/watch.js"></script>
+</body>
+</html>

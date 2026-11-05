@@ -1,0 +1,119 @@
+{
+  "title": "تفسير سورة الأنعام",
+  "channel": "دورة الأترجة القرآنية",
+  "sura": {
+    "number": 6,
+    "name": "الأنعام"
+  },
+  "generated": "2026-11-05",
+  "lectures": [
+    {
+      "id": "071",
+      "title": "تفسير سورة الأنعام من الآية 1 إلى الآية 18",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "youtube_id": "albg1ik7lSQ",
+      "youtube_url": "https://www.youtube.com/watch?v=albg1ik7lSQ",
+      "duration": 2409.581,
+      "data": "data/071.json"
+    },
+    {
+      "id": "072",
+      "title": "تفسير سورة الأنعام من الآية 19 إلى الآية 38",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "youtube_id": "_G35kjWPNUg",
+      "youtube_url": "https://www.youtube.com/watch?v=_G35kjWPNUg",
+      "duration": 2467.213,
+      "data": "data/072.json"
+    },
+    {
+      "id": "073",
+      "title": "تفسير سورة الأنعام من الآية 39 إلى الآية 58",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "youtube_id": "l9mNHp6Q-Gs",
+      "youtube_url": "https://www.youtube.com/watch?v=l9mNHp6Q-Gs",
+      "duration": 2510.17,
+      "data": "data/073.json"
+    },
+    {
+      "id": "074",
+      "title": "تفسير سورة الأنعام من الآية 59 إلى الآية 73",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "youtube_id": "v1DbCKKeI0w",
+      "youtube_url": "https://www.youtube.com/watch?v=v1DbCKKeI0w",
+      "duration": 2497.747,
+      "data": "data/074.json"
+    },
+    {
+      "id": "075",
+      "title": "تفسير سورة الأنعام من الآية 74 إلى الآية 82",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "youtube_id": "_ePzIAuOZLo",
+      "youtube_url": "https://www.youtube.com/watch?v=_ePzIAuOZLo",
+      "duration": 2378.826,
+      "data": "data/075.json"
+    },
+    {
+      "id": "076",
+      "title": "تفسير سورة الأنعام من الآية 83 إلى الآية 90",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "youtube_id": "C3Z0vWbnBuI",
+      "youtube_url": "https://www.youtube.com/watch?v=C3Z0vWbnBuI",
+      "duration": 2073.24,
+      "data": "data/076.json"
+    },
+    {
+      "id": "077",
+      "title": "تفسير سورة الأنعام من الآية 91 إلى الآية 94",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "youtube_id": "K7xNIcpksTE",
+      "youtube_url": "https://www.youtube.com/watch?v=K7xNIcpksTE",
+      "duration": 2329.519,
+      "data": "data/077.json"
+    },
+    {
+      "id": "078",
+      "title": "تفسير سورة الأنعام من الآية 95 إلى الآية 110",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "youtube_id": "a6TfsjxT9ZA",
+      "youtube_url": "https://www.youtube.com/watch?v=a6TfsjxT9ZA",
+      "duration": 2352.205,
+      "data": "data/078.json"
+    },
+    {
+      "id": "079",
+      "title": "تفسير سورة الأنعام من الآية 111 إلى الآية 121",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "youtube_id": "IRxroBnRfv4",
+      "youtube_url": "https://www.youtube.com/watch?v=IRxroBnRfv4",
+      "duration": 2068.654,
+      "data": "data/079.json"
+    },
+    {
+      "id": "080",
+      "title": "تفسير سورة الأنعام من الآية 122 إلى الآية 135",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "youtube_id": "ERvfWm2-GpM",
+      "youtube_url": "https://www.youtube.com/watch?v=ERvfWm2-GpM",
+      "duration": 2299.124,
+      "data": "data/080.json"
+    },
+    {
+      "id": "081",
+      "title": "تفسير سورة الأنعام من الآية 136 إلى الآية 149",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "youtube_id": "2sdYqyAgxpc",
+      "youtube_url": "https://www.youtube.com/watch?v=2sdYqyAgxpc",
+      "duration": 2499.001,
+      "data": "data/081.json"
+    },
+    {
+      "id": "082",
+      "title": "تفسير سورة الأنعام من الآية 149 إلى نهاية السورة",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "youtube_id": "FsuN4S-c1LE",
+      "youtube_url": "https://www.youtube.com/watch?v=FsuN4S-c1LE",
+      "duration": 2464.427,
+      "data": "data/082.json"
+    }
+  ]
+}
