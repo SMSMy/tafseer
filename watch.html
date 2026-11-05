@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link rel="stylesheet" href="assets/css/style.css?v=6">
 </head>
 <body>
 
@@ -62,7 +62,7 @@
       <div class="transcript" id="transcript" aria-live="polite"><!-- تُبنى من data/NNN.json --></div>
 
       <div class="end-card" id="endCard" hidden>
-        <h3>انتهى هذا المجلس ﷻ</h3>
+        <h3>انتهى هذا المجلس</h3>
         <p>نفع الله بك، وتابع مع المجلس التالي لإتمام تفسير سورة الأنعام.</p>
         <a class="btn btn-gold" id="endNextBtn" href="watch.html?id=072">المجلس التالي ←</a>
       </div>
@@ -106,6 +106,7 @@
         <div class="player-meta">
           <span id="metaDuration">المدة: —</span>
           <span id="metaAyahs">الآيات: —</span>
+          <button class="small-btn" id="introReplay" title="العودة إلى بداية التسجيل — المقدمة">↺ المقدمة</button>
           <a id="ytLink" href="#" target="_blank" rel="noopener">فتح على يوتيوب ↗</a>
         </div>
       </div>
@@ -122,8 +123,8 @@
 
 <div class="resume-toast" id="resumeToast" hidden role="status"></div>
 
-<script src="assets/js/common.js"></script>
+<script src="assets/js/common.js?v=6"></script>
 <script src="https://www.youtube.com/iframe_api" async></script>
-<script src="assets/js/watch.js"></script>
+<script src="assets/js/watch.js?v=6"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ let userScrolledAt = 0;
 let versesOpen = false;
 let saveTimer = 0;
 let ended = false;
+let introEnd = 0;            // نهاية المقدمة — حيث يبدأ الدرس فعليًا
 
 const $ = sel => document.querySelector(sel);
 
@@ -33,6 +34,7 @@ async function init() {
   }
   renderHead();
   renderTranscript();
+  scrollToIntroOnce();
   bindControls();
   bindTicker();
   setupYouTube();
@@ -82,6 +84,7 @@ function renderTranscript() {
   const frag = document.createDocumentFragment();
   const jump = $("#jumpSelect");
   timedSegs = [];
+  const pendingVerses = [];
 
   for (const seg of lecData.segments) {
     if (seg.type === "heading") {
@@ -89,9 +92,14 @@ function renderTranscript() {
       continue;
     }
     if (seg.type === "quran") {
-      frag.append(buildVerse(seg, jump));
+      const box = buildVerse(seg, jump);
+      frag.append(box);
+      pendingVerses.push(box);
       continue;
     }
+    // مقطع منطوق — وهو مرساة القفز للآيات المعلّقة قبله
+    for (const box of pendingVerses) box.dataset.anchor = String(seg.start);
+    pendingVerses.length = 0;
     // مقطع منطوق
     const p = el("p", { class: "seg", "data-start": seg.start, "data-end": seg.end, tabindex: "0", role: "button", "aria-label": "الانتقال إلى هذه الجملة" });
     const wordNodes = [];
@@ -102,6 +110,17 @@ function renderTranscript() {
     }
     frag.append(p);
     timedSegs.push({ start: seg.start, end: seg.end, el: p, words: wordNodes });
+  }
+  // آيات بلا مقطع منطوق بعدها (نادرة) — اربطها بآخر موضع معروف
+  const lastAnchor = timedSegs.length ? timedSegs[timedSegs.length - 1].end : 0;
+  for (const box of pendingVerses) box.dataset.anchor = String(lastAnchor);
+
+  // نهاية المقدمة = أول مقطع منطوق بعد عنوان «المقدمة والمدخل إلى موضوع المجلس»
+  // (في 071/072 يبدأ الكلام هنا مباشرة — والصمت قبله يُتخطّى)
+  let markerSeen = false;
+  for (const seg of lecData.segments) {
+    if (markerSeen && seg.timed) { introEnd = seg.start; break; }
+    if (seg.type === "heading" && seg.text.includes("المقدمة والمدخل")) markerSeen = true;
   }
   host.replaceChildren(frag);
 }
@@ -178,16 +197,19 @@ function bindControls() {
     if (e.key === "Enter" && e.target.classList.contains("seg")) seekTo(Number(e.target.dataset.start));
   });
 
-  // الانتقال إلى آية
+  // الانتقال إلى آية — يمرّر النص ويقفز بالتشغيل إلى موضع مناقشتها
   $("#jumpSelect").addEventListener("change", e => {
     if (e.target.value === "") return;
     const idx = Number(e.target.value);
     if (!Number.isFinite(idx)) return;
     const target = document.querySelector(`.verse[data-jump-index="${idx}"]`);
-    if (target) {
-      if (!target.classList.contains("open")) target.querySelector(".verse-toggle").click();
-      target.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
-    }
+    if (!target) return;
+    const anchor = Number(target.dataset.anchor);
+    if (Number.isFinite(anchor) && anchor >= 0) seekTo(anchor);
+    if (!target.classList.contains("open")) target.querySelector(".verse-toggle").click();
+    target.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
+    target.classList.add("flash");
+    window.setTimeout(() => target.classList.remove("flash"), 1800);
   });
 
   // شريط التقدم
@@ -222,6 +244,8 @@ function bindControls() {
   // التبديل صوت/فيديو
   $("#tabVideo").addEventListener("click", () => switchMode("video"));
   $("#tabAudio").addEventListener("click", () => switchMode("audio"));
+  // ↺ المقدمة — العودة إلى بداية التسجيل
+  $("#introReplay").addEventListener("click", () => seekTo(0));
 
   // لوحة المفاتيح
   window.addEventListener("keydown", e => {
@@ -240,6 +264,14 @@ function bindControls() {
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+/** من الطي إلى مقدمة الدرس مباشرة — بلا حركة تمرير (موضع ابتدائي) */
+function scrollToIntroOnce() {
+  const target = timedSegs.find(s => s.end > introEnd) || timedSegs[0];
+  if (!target) return;
+  const y = target.el.getBoundingClientRect().top + window.scrollY - 76;
+  window.scrollTo(0, Math.max(0, y));
 }
 
 function scrollToSegment(seg) {
@@ -309,7 +341,10 @@ function createYtPlayer() {
       videoId: lecData.youtube_id,
       playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
       events: {
-        onReady: () => { ytReady = true; },
+        onReady: () => {
+          ytReady = true;
+          try { ytPlayer.seekTo(Math.max(loadPosition(lecId), introEnd), true); } catch (_) {}
+        },
         onStateChange: e => {
           if (e.data === YT.PlayerState.ENDED) onEnded();
         },
@@ -323,6 +358,7 @@ function createYtPlayer() {
 function setupAudio() {
   const a = $("#audioEl");
   a.src = `audio/${lecId}.mp3`;
+  a.currentTime = Math.max(loadPosition(lecId), introEnd);
   a.addEventListener("ended", onEnded);
   a.addEventListener("play", () => { ended = false; $("#endCard").hidden = true; });
 }
@@ -397,14 +433,15 @@ function onEnded() {
 
 function setupResume() {
   const pos = loadPosition(lecId);
+  const effective = Math.max(pos, introEnd);
   const dur = lecData.duration || 0;
-  if (pos > 30 && pos < dur - 30) {
+  if (pos > 30 && effective < dur - 30) {
     const toast = $("#resumeToast");
     toast.innerHTML = "";
     toast.append(
-      el("span", { text: `توقفتَ عند ${fmtTime(pos)} — متابعة؟` }),
-      el("button", { class: "primary", text: "متابعة", onclick: () => { seekTo(pos); toast.hidden = true; } }),
-      el("button", { class: "ghost", text: "من البداية", onclick: () => { clearPosition(lecId); toast.hidden = true; } })
+      el("span", { text: `توقفتَ عند ${fmtTime(effective)} — متابعة؟` }),
+      el("button", { class: "primary", text: "متابعة", onclick: () => { seekTo(effective); toast.hidden = true; } }),
+      el("button", { class: "ghost", text: "من البداية", onclick: () => { seekTo(0); toast.hidden = true; } })
     );
     toast.hidden = false;
   }
