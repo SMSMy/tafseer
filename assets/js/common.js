@@ -30,16 +30,38 @@ function ayahRange(title) {
   return toArabicDigits(m[1]) + "–" + (m[2] === "نهاية" ? "نهاية السورة" : toArabicDigits(m[2]));
 }
 
-/** جلب index.json مع معامل مقاومة للتخزين المؤقت */
+/** جلب ملفات البيانات — قائمة سماح صارمة: فهرس الموقع أو ملف مجلس فقط */
 async function fetchJSON(url) {
+  if (!/^(index\.json|data\/[0-9]{3}\.json)$/.test(url)) {
+    throw new Error("مسار بيانات غير مسموح: " + url);
+  }
   const res = await fetch(url, { cache: "no-cache" });
   if (!res.ok) throw new Error(`تعذر تحميل ${url} (${res.status})`);
   return res.json();
 }
 
-/** تحميل index.json ثم ملف المجلس */
+/** تحميل index.json */
 async function loadIndex() {
   return fetchJSON("index.json");
+}
+
+/** تحميل ملف مجلس — الجلب هنا مباشرة بعد قائمة السماح (بلا وساطة) */
+async function loadLectureData(entry) {
+  if (!/^(data\/[0-9]{3}\.json)$/.test(entry.data)) {
+    throw new Error("مسار بيانات غير مسموح: " + entry.data);
+  }
+  const res = await fetch(entry.data, { cache: "no-cache" });
+  if (!res.ok) throw new Error(`تعذر تحميل ${entry.data} (${res.status})`);
+  return res.json();
+}
+
+/** البحث عن مجلس في كل السور: يعيد {sura, lecture} أو null */
+function findLecture(idx, id) {
+  for (const s of (idx.suras || [])) {
+    const lec = (s.lectures || []).find(x => x.id === id);
+    if (lec) return { sura: s, lecture: lec };
+  }
+  return null;
 }
 
 /** مفتاح التخزين المحلي لموضع كل مجلس */

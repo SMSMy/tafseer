@@ -5,6 +5,7 @@ const params = new URLSearchParams(location.search);
 const lecId = String(params.get("id") || "071").padStart(3, "0");
 
 let indexData = null;
+let suraData = null;
 let lecData = null;
 let timedSegs = [];          // [{start, end, el, words:[{start,end,el}]}]
 let currentIdx = -1;
@@ -24,10 +25,14 @@ init();
 
 async function init() {
   try {
+    // تعقيم معرّف المجلس من عنوان الصفحة: أرقام فقط ثلاثية قبل أي استخدام
+    if (!/^[0-9]{3}$/.test(lecId)) throw new Error("معرّف المجلس غير صالح: " + lecId);
     indexData = await loadIndex();
-    const known = indexData.lectures.find(l => l.id === lecId);
+    const known = findLecture(indexData, lecId);
     if (!known) throw new Error("معرّف المجلس غير معروف: " + lecId);
-    lecData = await fetchJSON(`data/${lecId}.json`);
+    suraData = known.sura;
+    // مسار البيانات من الفهرس المعتمد عبر الدالة المخصصة
+    lecData = await loadLectureData(known.lecture);
   } catch (err) {
     showFatal(err);
     return;
@@ -45,7 +50,7 @@ async function init() {
 /* ---------- العرض ---------- */
 
 function renderHead() {
-  document.title = `${lecData.title} | تفسير سورة الأنعام`;
+  document.title = `${lecData.title} | تفسير سورة ${suraData.name}`;
   $("#lecTitle").textContent = lecData.title;
   const range = ayahRange(lecData.title);
   const chips = [
@@ -61,10 +66,22 @@ function renderHead() {
   $("#audioSpeaker").textContent = lecData.speaker;
   $("#metaDuration").textContent = "المدة: " + fmtTime(lecData.duration);
   $("#metaAyahs").textContent = range ? "الآيات: " + range : "";
+  // نسخة PDF الأكاديمية (باسم المجلس عند التحميل) — تُخفى إن لم يتوفر الملف
+  const pdfLink = $("#pdfLink");
+  if (/^[0-9]{3}$/.test(lecId)) {
+    pdfLink.href = "pdf/" + lecId + ".pdf";
+    pdfLink.download = lecData.title + ".pdf";
+    pdfLink.hidden = false;
+  }
   $("#ytLink").href = lecData.youtube_url;
 
-  // أزرار السابق/التالي
-  const list = indexData.lectures;
+  // السلسلة في الشعار وروابط العودة إلى فهرس السورة
+  $("#brandSeries").textContent = "المجالس التفسيرية";
+  const back = $("#backLink");
+  if (back) { back.href = suraData.page || "index.html"; back.textContent = "← مجالس سورة " + suraData.name; }
+
+  // أزرار السابق/التالي داخل السورة نفسها
+  const list = suraData.lectures;
   const i = list.findIndex(l => l.id === lecId);
   const prev = list[i - 1], next = list[i + 1];
   const prevBtn = $("#prevLec"), nextBtn = $("#nextLec");
@@ -76,7 +93,7 @@ function renderHead() {
   // بطاقة النهاية
   const endBtn = $("#endNextBtn");
   if (next) endBtn.href = `watch.html?id=${next.id}`;
-  else { endBtn.textContent = "عودة إلى فهرس المجالس"; endBtn.href = "index.html"; }
+  else { endBtn.textContent = "عودة إلى فهرس السورة"; endBtn.href = suraData.page || "index.html"; }
 }
 
 function renderTranscript() {
@@ -186,12 +203,19 @@ function bindControls() {
     tvBtn.querySelector("span:last-child").textContent = versesOpen ? "طيّ كل الآيات" : "توسيع كل الآيات";
   });
 
-  // النقر على الجمل/الكلمات
+  // النقر على الجمل/الكلمات: الانتقال للموضع — وإن كان المشغل متوقفاً يُكمل التشغيل تلقائياً
+  const seekFromUser = t => {
+    seekTo(t);
+    const paused = mode === "audio"
+      ? $("#audioEl").paused
+      : (!ytReady || !ytPlayer.getPlayerState || ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING);
+    if (paused) togglePlay();
+  };
   $("#transcript").addEventListener("click", e => {
     const w = e.target.closest(".w");
-    if (w) { seekTo(Number(w.dataset.start)); return; }
+    if (w) { seekFromUser(Number(w.dataset.start)); return; }
     const seg = e.target.closest(".seg");
-    if (seg) seekTo(Number(seg.dataset.start));
+    if (seg) seekFromUser(Number(seg.dataset.start));
   });
   $("#transcript").addEventListener("keydown", e => {
     if (e.key === "Enter" && e.target.classList.contains("seg")) seekTo(Number(e.target.dataset.start));

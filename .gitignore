@@ -4,3 +4,10 @@ data-scribe/
 *.log
 Thumbs.db
 .DS_Store
+_media/
+_ref/
+.mimosa/
+.claude/
+agent/
+tools/__pycache__/
+.agents/

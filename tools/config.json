@@ -1,0 +1,111 @@
+{
+  "playlist": "https://www.youtube.com/playlist?list=PLIJ8GEGgVY0R8Ctd_anLCbBzPgpvsIkTL",
+  "sura": {
+    "number": 5,
+    "name": "المائدة",
+    "url": "https://www.youtube.com/playlist?list=PLIJ8GEGgVY0R8Ctd_anLCbBzPgpvsIkTL"
+  },
+  "channel": "دورة الأترجة القرآنية",
+  "quran_json": "_media/quran-uthmani.json",
+  "lectures": [
+    {
+      "id": "060",
+      "youtube_id": "3aRojABLMko",
+      "title_raw": "060 Tafsir of Surah Al-Ma'idah: Verses 1-3 - Dr. Abdulrahman bin Moa'dah Al-Shehri",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "verse_from": 1,
+      "verse_to": 3,
+      "duration": 1645
+    },
+    {
+      "id": "061",
+      "youtube_id": "_ZOAQiPa6Wo",
+      "title_raw": "061 Tafsir of Surah Al-Ma'idah from verse 3 to verse 26 - Dr. Abdulrahman bin Mu'adhah Al-Shehri",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "verse_from": 3,
+      "verse_to": 26,
+      "duration": 3493
+    },
+    {
+      "id": "062",
+      "youtube_id": "3kghJ4iazDA",
+      "title_raw": "062 Exegesis of Surah Al-Ma'idah: Verses 27 to 39 by Dr. Abdulrahman bin Moa'dah Al-Shehri",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "verse_from": 27,
+      "verse_to": 39,
+      "duration": 1884
+    },
+    {
+      "id": "063",
+      "youtube_id": "3NqVr9e-YNg",
+      "title_raw": "063 Interpretation of Surah Al-Ma'idah, Verses 40 to 50 - Dr. Abdulrahman bin Ma'ada Al-Shehri",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "verse_from": 40,
+      "verse_to": 50,
+      "duration": 2564
+    },
+    {
+      "id": "064",
+      "youtube_id": "M5DsCz9t7mY",
+      "title_raw": "064 تفسير سورة المائدة من الآية 51 إلى الآية 63 د. عبدالرحمن بن معاضة الشهري",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "verse_from": 51,
+      "verse_to": 63,
+      "duration": 2561
+    },
+    {
+      "id": "065",
+      "youtube_id": "b6ZfgECBcp0",
+      "title_raw": "065 تفسير سورة المائدة من الآية 64 إلى الآية 81 د. عبدالرحمن بن معاضة الشهري",
+      "speaker": "د. عبد الرحمن بن معاضة الشهري",
+      "verse_from": 64,
+      "verse_to": 81,
+      "duration": 3076
+    },
+    {
+      "id": "066",
+      "youtube_id": "9dFAGNOVZCI",
+      "title_raw": "066 تفسير سورة المائدة من الآية 82 إلى الآية 89 د. محمد بن عبد العزيز الخضيري",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "verse_from": 82,
+      "verse_to": 89,
+      "duration": 2478
+    },
+    {
+      "id": "067",
+      "youtube_id": "OKuC8aStpbU",
+      "title_raw": "067 تفسير سورة المائدة من الآية 90 إلى الآية 95 د. محمد بن عبد العزيز الخضيري",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "verse_from": 90,
+      "verse_to": 95,
+      "duration": 2295
+    },
+    {
+      "id": "068",
+      "youtube_id": "BW3wLdcPPcw",
+      "title_raw": "068 تفسير سورة المائدة من الآية 96 إلى الآية ال الآية 99 د. محمد بن عبد العزيز الخضيري",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "verse_from": 96,
+      "verse_to": 99,
+      "duration": 2397
+    },
+    {
+      "id": "069",
+      "youtube_id": "w6CBh0RRUsw",
+      "title_raw": "069 Interpretation of Surah Al-Ma'idah from verse 100 to verse 109 by Dr. Muhammad bin Abdul Aziz...",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "verse_from": 100,
+      "verse_to": 109,
+      "duration": 2411
+    },
+    {
+      "id": "070",
+      "youtube_id": "kcC5CAbDj2o",
+      "title_raw": "070 Interpretation of Surah Al-Ma'idah from verse 110 to the end of the Surah - Dr. Muhammad bin ...",
+      "speaker": "د. محمد بن عبد العزيز الخضيري",
+      "verse_from": 110,
+      "verse_to": null,
+      "duration": 2387
+    }
+  ]
+}

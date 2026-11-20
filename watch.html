@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>المجلس | تفسير سورة الأنعام — دورة الأترجة القرآنية</title>
-<meta name="description" content="استمع وشاهد مجلسًا من مجالس تفسير سورة الأنعام مع نص متزامن يُظلِّل الجملة الجارية، وآيات قابلة للطي بالرسم العثماني.">
+<title>المجلس | المجالس التفسيرية — دورة الأترجة القرآنية</title>
+<meta name="description" content="استمع وشاهد مجلسًا تفسيريًا مع نص متزامن يُظلِّل الجملة الجارية كلمةً كلمة، وآيات قابلة للطي بالرسم العثماني.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=6">
+<link rel="stylesheet" href="assets/css/style.css?v=10">
 </head>
 <body>
 
@@ -18,12 +18,12 @@
     <a class="brand" href="index.html" aria-label="فهرس المجالس">
       <svg viewBox="0 0 64 64" role="img" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#173d2b"/><circle cx="32" cy="32" r="29" fill="none" stroke="#c59b27" stroke-width="2"/><g fill="none" stroke="#c59b27" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22c6-2.6 12-2.6 18 0v22c-6-2.6-12-2.6-18 0z"/><path d="M50 22c-6-2.6-12-2.6-18 0v22c6-2.6 12-2.6 18 0z"/><path d="M32 22v22"/></g><path d="M32 8l1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6z" fill="#c59b27"/></svg>
       <span>
-        <span class="series">تفسير سورة الأنعام</span><br>
+        <span class="series" id="brandSeries">المجالس التفسيرية</span><br>
         <span class="channel">دورة الأترجة القرآنية</span>
       </span>
     </a>
     <nav aria-label="التنقل">
-      <a class="toplink" href="index.html">← فهرس المجالس</a>
+      <a class="toplink" id="backLink" href="index.html">← فهرس المجالس</a>
     </nav>
   </div>
 </header>
@@ -63,8 +63,8 @@
 
       <div class="end-card" id="endCard" hidden>
         <h3>انتهى هذا المجلس</h3>
-        <p>نفع الله بك، وتابع مع المجلس التالي لإتمام تفسير سورة الأنعام.</p>
-        <a class="btn btn-gold" id="endNextBtn" href="watch.html?id=072">المجلس التالي ←</a>
+        <p>نفع الله بك، وتابع مع المجلس التالي أو عد إلى فهرس السورة.</p>
+        <a class="btn btn-gold" id="endNextBtn" href="index.html">المجلس التالي ←</a>
       </div>
     </section>
 
@@ -107,11 +107,12 @@
           <span id="metaDuration">المدة: —</span>
           <span id="metaAyahs">الآيات: —</span>
           <button class="small-btn" id="introReplay" title="العودة إلى بداية التسجيل — المقدمة">↺ المقدمة</button>
+          <a id="pdfLink" href="#" download hidden title="نسخة أكاديمية منقّحة بصيغة PDF">📄 تحميل PDF</a>
           <a id="ytLink" href="#" target="_blank" rel="noopener">فتح على يوتيوب ↗</a>
         </div>
       </div>
 
-      <p class="hint" style="font-family:var(--font-ui);font-size:.72rem;color:var(--muted);margin:0;padding:0 4px">💡 انقر أي جملة أو كلمة للانتقال إلى موضعها · مسافة = تشغيل/إيقاف · ← → = ±٥ ثوانٍ</p>
+      <p class="hint" style="font-family:var(--font-ui);font-size:.72rem;color:var(--muted);margin:0;padding:0 4px">💡 انقر أي جملة أو كلمة لتنتقل إليها ويُكمل التشغيل تلقائيًا · مسافة = تشغيل/إيقاف · ← → = ±٥ ثوانٍ</p>
     </aside>
   </div>
 </main>
@@ -123,8 +124,8 @@
 
 <div class="resume-toast" id="resumeToast" hidden role="status"></div>
 
-<script src="assets/js/common.js?v=6"></script>
+<script src="assets/js/common.js?v=10"></script>
 <script src="https://www.youtube.com/iframe_api" async></script>
-<script src="assets/js/watch.js?v=6"></script>
+<script src="assets/js/watch.js?v=10"></script>
 </body>
 </html>
