@@ -10,4 +10,4 @@ _ref/
 .claude/
 agent/
 tools/__pycache__/
-.agents/
+.agents/data/skills/
